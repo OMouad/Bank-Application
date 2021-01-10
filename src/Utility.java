@@ -6,7 +6,8 @@ public class Utility {
     public static ArrayList<Account> readFile(String file){
         ArrayList<Account> accounts = new ArrayList<>();
         try {
-            FileReader fr = new FileReader(file);
+            FileReader fr;
+            fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line;
             while((line= br.readLine())!= null){

@@ -1,12 +1,12 @@
 public class Account {
     private String accountNumber;
-    private String accountholder;
+    private String accountHolder;
     private String openDate;
     private double balance;
     
-    public Account(String accountNumber,String accountholder,String openDate,double balance){
+    public Account(String accountNumber,String accountHolder,String openDate,double balance){
         this.accountNumber=accountNumber;
-        this.accountholder=accountholder;
+        this.accountHolder=accountHolder;
         this.openDate=openDate;
         this.balance=balance;
     }
@@ -19,5 +19,19 @@ public class Account {
     public void transfer(Account other,double amount){
         this.withdraw(amount);
         other.deposit(amount);
+    } 
+    public String getAccountHolder(){
+        return this.accountHolder;
+    }
+    public String getAccountOpenDate(){
+        return this.openDate;
+    }
+    public String getAccountBalance(){
+        return this.accountNumber;
+    }
+    
+    @Override
+    public String toString(){
+        return this.accountNumber;
     }
 }

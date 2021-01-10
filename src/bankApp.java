@@ -5,10 +5,15 @@ public class bankApp extends javax.swing.JFrame {
     
     private void initiateAccounts(){
         ArrayList<Account> accounts = Utility.readFile("accounts.txt");
+        for(Account a : accounts){
+            accNumberDropdown.addItem(a);
+        }
     }
+    
     
     public bankApp() {
         initComponents();
+        initiateAccounts();
     }
 
     /**
@@ -129,7 +134,11 @@ public class bankApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void accNumberDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accNumberDropdownActionPerformed
-        // TODO add your handling code here:
+        Account currentAccount;
+        currentAccount = (Account) accNumberDropdown.getSelectedItem();
+        customerNameText.setText(currentAccount.getAccountHolder());
+        openDateText.setText(currentAccount.getAccountOpenDate());
+        balanceText.setText(currentAccount.getAccountBalance());
     }//GEN-LAST:event_accNumberDropdownActionPerformed
 
     private void customerNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerNameTextActionPerformed
@@ -176,7 +185,7 @@ public class bankApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> accNumberDropdown;
+    private javax.swing.JComboBox<Account> accNumberDropdown;
     private javax.swing.JLabel accNumberLabel;
     private javax.swing.JLabel balanceLabek;
     private javax.swing.JTextField balanceText;
