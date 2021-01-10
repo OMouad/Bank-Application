@@ -26,8 +26,8 @@ public class Account {
     public String getAccountOpenDate(){
         return this.openDate;
     }
-    public String getAccountBalance(){
-        return this.accountNumber;
+    public double getAccountBalance(){
+        return this.balance;
     }
     
     @Override

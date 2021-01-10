@@ -138,7 +138,7 @@ public class bankApp extends javax.swing.JFrame {
         currentAccount = (Account) accNumberDropdown.getSelectedItem();
         customerNameText.setText(currentAccount.getAccountHolder());
         openDateText.setText(currentAccount.getAccountOpenDate());
-        balanceText.setText(currentAccount.getAccountBalance());
+        balanceText.setText(String.valueOf(currentAccount.getAccountBalance()));
     }//GEN-LAST:event_accNumberDropdownActionPerformed
 
     private void customerNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerNameTextActionPerformed
