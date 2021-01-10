@@ -10,6 +10,14 @@ public class Account {
         this.openDate=openDate;
         this.balance=balance;
     }
-    
-    
+    public void withdraw(double amount){
+        this.balance-=amount;
+    }
+    public void deposit(double amount){
+        this.balance+=amount;
+    }
+    public void transfer(Account other,double amount){
+        this.withdraw(amount);
+        other.deposit(amount);
+    }
 }
