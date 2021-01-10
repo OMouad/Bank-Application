@@ -1,5 +1,7 @@
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 public class Utility {
     
@@ -19,11 +21,30 @@ public class Utility {
                 Account a= new Account(accountNumber,accountholder,openDate,balance);
                 accounts.add(a);
             }
+            br.close();
         }
         catch (Exception e){
             System.out.println(e);
         }
         return accounts;
+    }
+    public static void writeFile(ArrayList<Account> accounts,String fileName){
+        
+            try {
+                FileWriter fw = new FileWriter(fileName);
+                BufferedWriter bw = new BufferedWriter(fw);
+                for (Account a : accounts){
+                bw.write(a.toString()+"<>"+a.getAccountHolder()+"<>"+a.getAccountOpenDate()+"<>"+String.valueOf(a.getAccountBalance()+"\n"));
+                }
+                bw.close();
+            }
+            catch(Exception e){
+                System.out.println(fileName);
+                
+            }
+        
+        
+        
     }
     
 }

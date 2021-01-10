@@ -165,6 +165,7 @@ public class bankApp extends javax.swing.JFrame {
         double amount = Double.parseDouble(amountString);
         currentAccount.withdraw(amount);
         balanceText.setText(String.valueOf(currentAccount.getAccountBalance()));
+        Utility.writeFile(accounts, "accounts.txt");
     }//GEN-LAST:event_withdrawButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -176,6 +177,7 @@ public class bankApp extends javax.swing.JFrame {
         double amount = Double.parseDouble(amountString);
         currentAccount.deposit(amount);
         balanceText.setText(String.valueOf(currentAccount.getAccountBalance()));
+        Utility.writeFile(accounts, "accounts.txt");
     }//GEN-LAST:event_depositButtonActionPerformed
 
     private void transferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferButtonActionPerformed
@@ -184,13 +186,14 @@ public class bankApp extends javax.swing.JFrame {
         for(Account a: accounts){
             if (a.toString().equals(accountNumber)){
                 transferAccount = a;
+                break;
             }
         }
         String amountString = JOptionPane.showInputDialog(this, "Enter an amount to transfer: ","Transfer",JOptionPane.PLAIN_MESSAGE);
         double amount = Double.parseDouble(amountString);
         currentAccount.transfer(transferAccount,amount);
         balanceText.setText(String.valueOf(currentAccount.getAccountBalance()));
-        
+        Utility.writeFile(accounts, "accounts.txt");
     }//GEN-LAST:event_transferButtonActionPerformed
 
     /**
