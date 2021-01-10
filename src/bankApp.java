@@ -1,10 +1,11 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class bankApp extends javax.swing.JFrame {
-    
+    Account currentAccount;
+    ArrayList<Account> accounts = Utility.readFile("accounts.txt");
     private void initiateAccounts(){
-        ArrayList<Account> accounts = Utility.readFile("accounts.txt");
         for(Account a : accounts){
             accNumberDropdown.addItem(a);
         }
@@ -66,6 +67,11 @@ public class bankApp extends javax.swing.JFrame {
         });
 
         depositButton.setText("Deposit");
+        depositButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositButtonActionPerformed(evt);
+            }
+        });
 
         withdrawButton.setText("Withdraw");
         withdrawButton.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +81,11 @@ public class bankApp extends javax.swing.JFrame {
         });
 
         transferButton.setText("Transfer");
+        transferButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transferButtonActionPerformed(evt);
+            }
+        });
 
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +150,6 @@ public class bankApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void accNumberDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accNumberDropdownActionPerformed
-        Account currentAccount;
         currentAccount = (Account) accNumberDropdown.getSelectedItem();
         customerNameText.setText(currentAccount.getAccountHolder());
         openDateText.setText(currentAccount.getAccountOpenDate());
@@ -151,12 +161,37 @@ public class bankApp extends javax.swing.JFrame {
     }//GEN-LAST:event_customerNameTextActionPerformed
 
     private void withdrawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawButtonActionPerformed
-        // TODO add your handling code here:
+        String amountString = JOptionPane.showInputDialog(this, "Enter an amount to withdraw: ","Withdraw",JOptionPane.PLAIN_MESSAGE);
+        double amount = Double.parseDouble(amountString);
+        currentAccount.withdraw(amount);
+        balanceText.setText(String.valueOf(currentAccount.getAccountBalance()));
     }//GEN-LAST:event_withdrawButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void depositButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositButtonActionPerformed
+        String amountString = JOptionPane.showInputDialog(this, "Enter an amount to deposit: ","Deposit",JOptionPane.PLAIN_MESSAGE);
+        double amount = Double.parseDouble(amountString);
+        currentAccount.deposit(amount);
+        balanceText.setText(String.valueOf(currentAccount.getAccountBalance()));
+    }//GEN-LAST:event_depositButtonActionPerformed
+
+    private void transferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferButtonActionPerformed
+        String accountNumber = JOptionPane.showInputDialog(this, "Enter the account to transfer to: ","Transfer",JOptionPane.PLAIN_MESSAGE);
+        Account transferAccount = null;
+        for(Account a: accounts){
+            if (a.toString().equals(accountNumber)){
+                transferAccount = a;
+            }
+        }
+        String amountString = JOptionPane.showInputDialog(this, "Enter an amount to transfer: ","Transfer",JOptionPane.PLAIN_MESSAGE);
+        double amount = Double.parseDouble(amountString);
+        currentAccount.transfer(transferAccount,amount);
+        balanceText.setText(String.valueOf(currentAccount.getAccountBalance()));
+        
+    }//GEN-LAST:event_transferButtonActionPerformed
 
     /**
      * @param args the command line arguments
