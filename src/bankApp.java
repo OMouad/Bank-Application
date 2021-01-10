@@ -1,15 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author ULTRAPC
- */
 public class bankApp extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form bankApp
      */
@@ -60,7 +50,6 @@ public class bankApp extends javax.swing.JFrame {
 
         jTextField4.setEditable(false);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
